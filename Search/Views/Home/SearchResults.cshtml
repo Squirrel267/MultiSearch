@@ -1,0 +1,20 @@
+﻿@model Search.Models.SearchResult
+
+<form method="get">
+    <h4 class="text-info">Введите запрос:</h4>
+    <input type="text" name="searchQuery" value="@Model.SearchQuery" />
+    <input asp-controller="Home" asp-action="Index" class="btn bg-info " type="submit" value="Поиск в поисковых системах" />
+    <input asp-controller="Home" asp-action="LocalSearch" class="btn bg-warning " type="submit" value="Поиск в базе данных" />
+</form>
+<br />
+
+<ol class="list-group list-group-flush">
+    @foreach (var result in Model.SearchResults.OrderBy(r => r.Position))
+    {
+        <li>
+            <a href="@result.Link" class="list-group-item" target="_blank">@result.Title</a>
+        </li>
+
+    }
+
+</ol>
